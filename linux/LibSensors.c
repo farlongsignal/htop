@@ -143,6 +143,15 @@ static int tempDriverPriority(const sensors_chip_name* chip) {
       { "bigcore0_thermal",   0 },
       { "bigcore1_thermal",   0 },
       { "bigcore2_thermal",   0 },
+      /* Qualcomm SDM845 */
+      { "cpu0_thermal",   0 },
+      { "cpu1_thermal",   0 },
+      { "cpu2_thermal",   0 },
+      { "cpu3_thermal",   0 },
+      { "cpu4_thermal",   0 },
+      { "cpu5_thermal",   0 },
+      { "cpu6_thermal",   0 },
+      { "cpu7_thermal",   0 },
       /* Low priority drivers */
       { "acpitz",             1 },
    };
@@ -238,6 +247,50 @@ void LibSensors_getCPUTemperatures(CPUData* cpus, unsigned int existingCPUs, uns
                data[7] = temp;
                data[8] = temp;
                coreTempCount += 2;
+               continue;
+            }
+         }
+
+         /* Qualcomm SDM845 */
+         if (existingCPUs == 8) {
+            if (String_eq(chip->prefix, "cpu0_thermal")) {
+               data[1] = temp;
+               coreTempCount += 1;
+               continue;
+            }
+            if (String_eq(chip->prefix, "cpu1_thermal")) {
+               data[2] = temp;
+               coreTempCount += 1;
+               continue;
+            }
+            if (String_eq(chip->prefix, "cpu2_thermal")) {
+               data[3] = temp;
+               coreTempCount += 1;
+               continue;
+            }
+            if (String_eq(chip->prefix, "cpu3_thermal")) {
+               data[4] = temp;
+               coreTempCount += 1;
+               continue;
+            }
+            if (String_eq(chip->prefix, "cpu4_thermal")) {
+               data[5] = temp;
+               coreTempCount += 1;
+               continue;
+            }
+            if (String_eq(chip->prefix, "cpu5_thermal")) {
+               data[6] = temp;
+               coreTempCount += 1;
+               continue;
+            }
+            if (String_eq(chip->prefix, "cpu6_thermal")) {
+               data[7] = temp;
+               coreTempCount += 1;
+               continue;
+            }
+            if (String_eq(chip->prefix, "cpu7_thermal")) {
+               data[8] = temp;
+               coreTempCount += 1;
                continue;
             }
          }
